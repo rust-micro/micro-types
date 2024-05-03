@@ -14,7 +14,7 @@ This crate provides a set of types, which are backed by a server, and can be use
 ## Example
 
 ```rust
-use dtypes::redis::DString as String;
+use dtypes::redis::types::DString as String;
 
 let client = redis::Client::open("redis://localhost/").unwrap();
 let mut s1 = String::with_value("Hello".to_string(), "s1", client.clone());
