@@ -1,4 +1,4 @@
-use crate::redis::Generic;
+use crate::redis::types::Generic;
 use serde_json::from_str;
 use std::ops::{Deref, DerefMut};
 use thiserror::Error;
@@ -75,8 +75,8 @@ where
     ///
     /// # Example
     /// ```
-    /// use dtypes::redis::Generic;
-    /// use dtypes::redis::ClockOrdered;
+    /// use dtypes::redis::types::Generic;
+    /// use dtypes::redis::sync::ClockOrdered;
     ///
     /// let client = redis::Client::open("redis://localhost:6379").unwrap();
     /// let mut i32 = Generic::with_value(1, "test_add_clock_ordered_example1", client.clone());
@@ -91,8 +91,8 @@ where
     /// # Example
     /// ```
     /// use std::thread;
-    /// use dtypes::redis::Generic;
-    /// use dtypes::redis::ClockOrdered;
+    /// use dtypes::redis::types::Generic;
+    /// use dtypes::redis::sync::ClockOrdered;
     ///
     /// let client = redis::Client::open("redis://localhost:6379").unwrap();
     /// let client2 = client.clone();
@@ -131,8 +131,8 @@ where
     /// # Example
     /// ```
     /// use std::thread;
-    /// use dtypes::redis::Generic;
-    /// use dtypes::redis::ClockOrdered;
+    /// use dtypes::redis::types::Generic;
+    /// use dtypes::redis::sync::ClockOrdered;
     ///
     /// let client = redis::Client::open("redis://localhost:6379").unwrap();
     /// let client2 = client.clone();
@@ -223,8 +223,8 @@ impl<T> DerefMut for ClockOrdered<T> {
 mod tests {
     #[test]
     fn test_set_load() {
-        use crate::redis::ClockOrdered;
-        use crate::redis::Generic;
+        use crate::redis::sync::ClockOrdered;
+        use crate::redis::types::Generic;
 
         let client = redis::Client::open("redis://localhost:6379").unwrap();
         let i32: Generic<i32> = Generic::new("test_add_clock_ordered", client.clone());

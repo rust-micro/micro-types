@@ -1,7 +1,7 @@
 use super::RwLockReadGuard;
 use super::RwLockWriteGuard;
 use crate::redis::rwlock::constants::{READER_LOCK, UUID_SCRIPT, WRITER_LOCK};
-use crate::redis::{Generic, LockError};
+use crate::redis::{sync::LockError, types::Generic};
 use redis::Connection;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
@@ -21,8 +21,8 @@ use std::ops::{Deref, DerefMut};
 ///
 /// ## Linear usage
 /// ```
-/// use dtypes::redis::RwLock;
-/// use dtypes::redis::Di32;
+/// use dtypes::redis::sync::RwLock;
+/// use dtypes::redis::types::Di32;
 /// use std::thread;
 ///
 /// let client = redis::Client::open("redis://localhost:6379").unwrap();
@@ -54,8 +54,8 @@ use std::ops::{Deref, DerefMut};
 /// ```
 /// ## Threaded usage
 /// ```
-/// use dtypes::redis::RwLock;
-/// use dtypes::redis::Di32;
+/// use dtypes::redis::sync::RwLock;
+/// use dtypes::redis::types::Di32;
 /// use std::thread;
 ///
 /// let client = redis::Client::open("redis://localhost:6379").unwrap();
@@ -148,7 +148,7 @@ impl<T> DerefMut for RwLock<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::redis::*;
+    use crate::redis::types::*;
     use std::mem::ManuallyDrop;
 
     #[test]

@@ -26,7 +26,7 @@
 //! # Usage
 //!
 //! ```
-//! use dtypes::redis::Di32 as i32;
+//! use dtypes::redis::types::Di32 as i32;
 //!
 //! let client = redis::Client::open("redis://localhost:6379").unwrap();
 //! let mut i32 = i32::with_value(1, "test_add", client.clone());
@@ -54,15 +54,21 @@ mod string;
 
 pub(crate) use helper::apply_operator;
 
-pub use barrier::{Barrier, BarrierWaitResult};
-pub use bool_type::TBool as Dbool;
-pub use clock::ClockOrdered;
-pub use generic::Generic;
-pub use integer::{
-    Ti16 as Di16, Ti32 as Di32, Ti64 as Di64, Ti8 as Di8, Tisize as Disize, Tu16 as Du16,
-    Tu32 as Du32, Tu64 as Du64, Tu8 as Du8, Tusize as Dusize,
-};
-pub use list::{List, ListCache, ListIter};
-pub use mutex::{Guard, LockError, Mutex};
-pub use rwlock::RwLock;
-pub use string::TString as DString;
+pub mod sync {
+    pub use crate::redis::barrier::{Barrier, BarrierWaitResult};
+    pub use crate::redis::clock::ClockOrdered;
+    pub use crate::redis::mutex::{Guard, LockError, Mutex};
+    pub use crate::redis::rwlock::{RwLock, RwLockReadGuard, RwLockWriteGuard};
+}
+
+/// Holds all the types that can be stored in Redis.
+pub mod types {
+    pub use crate::redis::bool_type::TBool as Dbool;
+    pub use crate::redis::generic::Generic;
+    pub use crate::redis::integer::{
+        Ti16 as Di16, Ti32 as Di32, Ti64 as Di64, Ti8 as Di8, Tisize as Disize, Tu16 as Du16,
+        Tu32 as Du32, Tu64 as Du64, Tu8 as Du8, Tusize as Dusize,
+    };
+    pub use crate::redis::list::{List, ListCache, ListIter};
+    pub use crate::redis::string::TString as DString;
+}

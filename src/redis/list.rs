@@ -1,4 +1,3 @@
-use crate::redis::Generic;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::collections::VecDeque;
@@ -8,7 +7,7 @@ use std::ops::{Deref, DerefMut};
 ///
 /// # Example
 /// ```
-/// use dtypes::redis::List;
+/// use dtypes::redis::types::List;
 ///
 /// let client = redis::Client::open("redis://localhost:6379").unwrap();
 /// let mut list = List::new("test_list", client);
@@ -157,7 +156,7 @@ where
 ///
 /// # Example
 /// ```
-/// use dtypes::redis::{ListCache, Mutex};
+/// use dtypes::redis::{types::ListCache, sync::Mutex};
 ///
 /// let client = redis::Client::open("redis://localhost:6379").unwrap();
 /// let mut list = ListCache::new("test_list2", client);

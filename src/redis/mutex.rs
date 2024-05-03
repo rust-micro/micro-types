@@ -1,4 +1,4 @@
-use crate::redis::Generic;
+use crate::redis::types::Generic;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::ops::{Deref, DerefMut};
@@ -153,8 +153,8 @@ where
     ///
     /// # Example
     /// ```
-    /// use dtypes::redis::Di32 as i32;
-    /// use dtypes::redis::Mutex;
+    /// use dtypes::redis::types::Di32 as i32;
+    /// use dtypes::redis::sync::Mutex;
     /// use std::thread::scope;
     ///
     /// let client = redis::Client::open("redis://localhost:6379").unwrap();
@@ -188,8 +188,8 @@ where
     /// # Example
     /// ```
     /// use std::thread::sleep;
-    /// use dtypes::redis::Di32 as i32;
-    /// use dtypes::redis::Mutex;
+    /// use dtypes::redis::types::Di32 as i32;
+    /// use dtypes::redis::sync::Mutex;
     ///
     /// let client = redis::Client::open("redis://localhost:6379").unwrap();
     /// let mut i32 = i32::new("test_add_example2", client.clone());
@@ -368,7 +368,7 @@ impl<T> Drop for Guard<'_, T> {
 #[cfg(test)]
 mod tests {
     use super::Mutex;
-    use crate::redis::Di32;
+    use crate::redis::types::Di32;
     use std::thread;
     #[test]
     fn test_create_lock() {

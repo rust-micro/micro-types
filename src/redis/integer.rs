@@ -1,6 +1,6 @@
 //! The integer module contains the Ti32 struct which is a wrapper around an i32 value stored in Redis.
 
-use crate::redis::Generic;
+use crate::redis::types::Generic;
 pub type Tusize = Generic<usize>;
 pub type Tu8 = Generic<u8>;
 pub type Tu16 = Generic<u16>;
