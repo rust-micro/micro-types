@@ -1,4 +1,4 @@
-use dtypes::redis::DString as String;
+use dtypes::redis::types::DString as String;
 use std::thread;
 use std::thread::sleep;
 

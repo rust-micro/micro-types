@@ -1,6 +1,6 @@
 use crate::redis::rwlock::constants::{LOAD_SCRIPT, STORE_SCRIPT, WRITER_LOCK_DROP};
 use crate::redis::rwlock::RwLockError;
-use crate::redis::{Generic, RwLock};
+use crate::redis::{sync::RwLock, types::Generic};
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::ops::{Deref, DerefMut};

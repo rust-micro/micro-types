@@ -1,4 +1,4 @@
-use crate::redis::Generic;
+use crate::redis::types::Generic;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::fmt::Display;

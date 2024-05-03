@@ -1,6 +1,6 @@
 //! # String Type
 //! This module contains the string type.
-use crate::redis::Generic;
+use crate::redis::types::Generic;
 use std::ops::{Add, AddAssign};
 
 pub type TString = Generic<String>;

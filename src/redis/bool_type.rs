@@ -1,6 +1,6 @@
 //! # Boolean Type
 //! This module contains the boolean type.
-pub type TBool = crate::redis::Generic<bool>;
+pub type TBool = crate::redis::types::Generic<bool>;
 
 #[cfg(test)]
 mod tests {
