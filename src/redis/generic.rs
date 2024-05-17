@@ -108,6 +108,7 @@ where
 
     /// The acquire method returns a reference to the value stored in the type.
     /// Loads it from the redis directly.
+    /// Panics, if there is no value stored in Redis. To circumvent this, you should always use [Generic::with_value_default].
     ///
     /// # Example
     ///
@@ -124,7 +125,8 @@ where
         self.cache.as_ref().unwrap()
     }
 
-    fn try_get(&self) -> Option<T> {
+    /// Only for inner use.
+    pub(crate) fn try_get(&self) -> Option<T> {
         let mut conn = self.get_conn();
         let res: RedisResult<String> = conn.get(&self.key);
         match res {

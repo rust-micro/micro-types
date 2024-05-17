@@ -49,6 +49,7 @@ mod helper;
 mod integer;
 mod list;
 mod mutex;
+mod once;
 mod rwlock;
 mod string;
 
@@ -58,6 +59,7 @@ pub mod sync {
     pub use crate::redis::barrier::{Barrier, BarrierWaitResult};
     pub use crate::redis::clock::ClockOrdered;
     pub use crate::redis::mutex::{Guard, LockError, Mutex};
+    pub use crate::redis::once::{Once, OnceError};
     pub use crate::redis::rwlock::{RwLock, RwLockReadGuard, RwLockWriteGuard};
 }
 
